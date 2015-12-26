@@ -1,0 +1,20 @@
+{
+  "author": "anypossiblew",
+  "name": "angular-ui-map-google",
+  "version": "0.6.2",
+  "homepage": "https://github.com/anypossiblew/ui-map",
+  "keywords": [
+    "angular",
+    "angularui",
+    "map"
+  ],
+  "main": "./src/ui-map.js",
+  "dependencies": {
+    "angular": "1.x",
+    "angular-ui-utils": "event-0.1.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.x",
+    "bootstrap": "~3.2.0"
+  }
+}
