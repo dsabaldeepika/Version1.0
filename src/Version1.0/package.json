@@ -1,7 +1,7 @@
 {
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-uglify": "^1.5.1"
+    
+    
   },
   "name": "Version 1.0",
   "private": true,
