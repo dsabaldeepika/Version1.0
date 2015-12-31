@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
@@ -16,7 +13,7 @@ namespace Website1.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-beta8")
+                .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
@@ -49,7 +46,8 @@ namespace Website1.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("RoleId");
+                    b.Property<string>("RoleId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -65,7 +63,8 @@ namespace Website1.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -80,7 +79,8 @@ namespace Website1.Migrations
 
                     b.Property<string>("ProviderDisplayName");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("UserId")
+                        .IsRequired();
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -146,6 +146,349 @@ namespace Website1.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUsers");
                 });
 
+            modelBuilder.Entity("Website1.Models.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("By");
+
+                    b.Property<int>("ById");
+
+                    b.Property<string>("CommentContent");
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<DateTime>("CreatedById");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<DateTime>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<string>("To");
+
+                    b.Property<int>("ToId");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.ContactInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<DateTime>("CreatedById");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<string>("EmailAddress");
+
+                    b.Property<string>("EmailAddress2");
+
+                    b.Property<string>("FacebookUrl");
+
+                    b.Property<string>("GoogleplusUrl");
+
+                    b.Property<string>("HomeCity");
+
+                    b.Property<string>("HomeState");
+
+                    b.Property<string>("HomeStreetAddress");
+
+                    b.Property<string>("HomeStreetAddress2");
+
+                    b.Property<string>("HomeZipCode");
+
+                    b.Property<string>("LinkedinUrl");
+
+                    b.Property<string>("MainUrl");
+
+                    b.Property<DateTime>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<string>("PhoneNumber2");
+
+                    b.Property<string>("TwitterUrl");
+
+                    b.Property<string>("WorkCity");
+
+                    b.Property<string>("WorkState");
+
+                    b.Property<string>("WorkStreetAddress");
+
+                    b.Property<string>("WorkStreetAddress2");
+
+                    b.Property<string>("WorkZipCode");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.Dashboard", b =>
+                {
+                    b.Property<string>("Id");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<int>("DashboardId1");
+
+                    b.Property<int>("DashboardId10");
+
+                    b.Property<int>("DashboardId2");
+
+                    b.Property<int>("DashboardId3");
+
+                    b.Property<int>("DashboardId4");
+
+                    b.Property<int>("DashboardId5");
+
+                    b.Property<int>("DashboardId6");
+
+                    b.Property<int>("DashboardId7");
+
+                    b.Property<int>("DashboardId8");
+
+                    b.Property<int>("DashboardId9");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.Education", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Activities");
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<DateTime>("CreatedById");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<DateTime?>("DatesAttended");
+
+                    b.Property<string>("DegreeReceived");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("FieldofStudy");
+
+                    b.Property<char>("Grade");
+
+                    b.Property<DateTime>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<string>("School");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.Favorite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<DateTime>("CreatedById");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<DateTime>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.Interest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<DateTime>("CreatedById");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<DateTime>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.Job", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<DateTime>("CreatedById");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<DateTime?>("EndDate");
+
+                    b.Property<string>("JobTitle");
+
+                    b.Property<DateTime>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<DateTime>("StartDate");
+
+                    b.Property<int>("YearsExperience");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.Layout", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BackgroundColor");
+
+                    b.Property<string>("BodyColor");
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<DateTime>("CreatedById");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<string>("FooterColor");
+
+                    b.Property<string>("HeaderColor");
+
+                    b.Property<string>("LayoutName");
+
+                    b.Property<DateTime>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<string>("NavigationBarColor");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.Like", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("By");
+
+                    b.Property<int>("ById");
+
+                    b.Property<string>("CommentContent");
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<DateTime>("CreatedById");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<DateTime>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<int?>("StatusId");
+
+                    b.Property<string>("To");
+
+                    b.Property<int>("ToId");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.Note", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<DateTime>("CreatedById");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<DateTime>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<string>("NoteContent");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.Skill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<DateTime>("CreatedById");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<string>("Description");
+
+                    b.Property<DateTime>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<DateTime>("CreatedById");
+
+                    b.Property<int>("DashboardId");
+
+                    b.Property<DateTime>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+                });
+
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNet.Identity.EntityFramework.IdentityRole")
@@ -176,6 +519,98 @@ namespace Website1.Migrations
                     b.HasOne("Website1.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Website1.Models.Comment", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithMany()
+                        .HasForeignKey("DashboardId")
+                        .HasPrincipalKey("DashboardId");
+                });
+
+            modelBuilder.Entity("Website1.Models.ContactInfo", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithMany()
+                        .HasForeignKey("DashboardId")
+                        .HasPrincipalKey("DashboardId1");
+                });
+
+            modelBuilder.Entity("Website1.Models.Education", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithMany()
+                        .HasForeignKey("DashboardId")
+                        .HasPrincipalKey("DashboardId2");
+                });
+
+            modelBuilder.Entity("Website1.Models.Favorite", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithMany()
+                        .HasForeignKey("DashboardId")
+                        .HasPrincipalKey("DashboardId3");
+                });
+
+            modelBuilder.Entity("Website1.Models.Interest", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithMany()
+                        .HasForeignKey("DashboardId")
+                        .HasPrincipalKey("DashboardId4");
+                });
+
+            modelBuilder.Entity("Website1.Models.Job", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithMany()
+                        .HasForeignKey("DashboardId")
+                        .HasPrincipalKey("DashboardId5");
+                });
+
+            modelBuilder.Entity("Website1.Models.Layout", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithMany()
+                        .HasForeignKey("DashboardId")
+                        .HasPrincipalKey("DashboardId6");
+                });
+
+            modelBuilder.Entity("Website1.Models.Like", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithMany()
+                        .HasForeignKey("DashboardId")
+                        .HasPrincipalKey("DashboardId7");
+
+                    b.HasOne("Website1.Models.Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId");
+                });
+
+            modelBuilder.Entity("Website1.Models.Note", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithMany()
+                        .HasForeignKey("DashboardId")
+                        .HasPrincipalKey("DashboardId8");
+                });
+
+            modelBuilder.Entity("Website1.Models.Skill", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithMany()
+                        .HasForeignKey("DashboardId")
+                        .HasPrincipalKey("DashboardId9");
+                });
+
+            modelBuilder.Entity("Website1.Models.Status", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithMany()
+                        .HasForeignKey("DashboardId")
+                        .HasPrincipalKey("DashboardId10");
                 });
         }
     }

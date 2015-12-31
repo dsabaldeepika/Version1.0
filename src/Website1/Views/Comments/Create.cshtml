@@ -1,0 +1,106 @@
+@model Website1.Models.Comment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Comment</h4>
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="By" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="By" class="form-control" />
+                <span asp-validation-for="By" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ById" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ById" class="form-control" />
+                <span asp-validation-for="ById" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CommentContent" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CommentContent" class="form-control" />
+                <span asp-validation-for="CommentContent" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreateDateTime" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreateDateTime" class="form-control" />
+                <span asp-validation-for="CreateDateTime" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreatedById" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CreatedById" class="form-control" />
+                <span asp-validation-for="CreatedById" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="DashboardId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="DashboardId" class ="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ModifiedById" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ModifiedById" class="form-control" />
+                <span asp-validation-for="ModifiedById" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ModifiedDateTime" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ModifiedDateTime" class="form-control" />
+                <span asp-validation-for="ModifiedDateTime" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="StatusId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="StatusId" class="form-control" />
+                <span asp-validation-for="StatusId" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="To" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="To" class="form-control" />
+                <span asp-validation-for="To" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ToId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ToId" class="form-control" />
+                <span asp-validation-for="ToId" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
