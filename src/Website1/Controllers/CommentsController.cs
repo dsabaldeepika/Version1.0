@@ -1,7 +1,5 @@
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Website1.Models;
 
@@ -19,8 +17,7 @@ namespace Website1.Controllers
         // GET: Comments
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Comment.Include(c => c.Dashboard);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Comment.ToListAsync());
         }
 
         // GET: Comments/Details/5
@@ -43,7 +40,6 @@ namespace Website1.Controllers
         // GET: Comments/Create
         public IActionResult Create()
         {
-            ViewData["DashboardId"] = new SelectList(_context.Set<Dashboard>(), "DashboardId", "Dashboard");
             return View();
         }
 
@@ -58,7 +54,6 @@ namespace Website1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["DashboardId"] = new SelectList(_context.Set<Dashboard>(), "DashboardId", "Dashboard", comment.DashboardId);
             return View(comment);
         }
 
@@ -75,7 +70,6 @@ namespace Website1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewData["DashboardId"] = new SelectList(_context.Set<Dashboard>(), "DashboardId", "Dashboard", comment.DashboardId);
             return View(comment);
         }
 
@@ -90,7 +84,6 @@ namespace Website1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["DashboardId"] = new SelectList(_context.Set<Dashboard>(), "DashboardId", "Dashboard", comment.DashboardId);
             return View(comment);
         }
 

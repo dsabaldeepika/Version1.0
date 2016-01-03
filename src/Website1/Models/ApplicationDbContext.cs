@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
-using Website1.Models;
 
 namespace Website1.Models
 {
@@ -26,6 +25,11 @@ namespace Website1.Models
         public DbSet<Note> Note { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<Skill> Skill { get; set; }
-       
+
+
+        public DbSet<ApplicationUser> User { get; set; }
+
+
+        public DbSet<Profile> Profile { get; set; }
     }
 }

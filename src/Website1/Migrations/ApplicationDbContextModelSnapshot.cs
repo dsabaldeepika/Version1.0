@@ -2,7 +2,6 @@ using System;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Migrations;
 using Website1.Models;
 
 namespace Website1.Migrations
@@ -161,11 +160,11 @@ namespace Website1.Migrations
 
                     b.Property<DateTime>("CreatedById");
 
-                    b.Property<int>("DashboardId");
-
                     b.Property<DateTime>("ModifiedById");
 
                     b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<int?>("StatusId");
 
                     b.Property<string>("To");
 
@@ -176,14 +175,14 @@ namespace Website1.Migrations
 
             modelBuilder.Entity("Website1.Models.ContactInfo", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreateDateTime");
 
-                    b.Property<DateTime>("CreatedById");
+                    b.Property<int>("CreatedById");
 
-                    b.Property<int>("DashboardId");
+                    b.Property<string>("DashboardDashboardId");
 
                     b.Property<string>("EmailAddress");
 
@@ -207,7 +206,7 @@ namespace Website1.Migrations
 
                     b.Property<string>("MainUrl");
 
-                    b.Property<DateTime>("ModifiedById");
+                    b.Property<int>("ModifiedById");
 
                     b.Property<DateTime>("ModifiedDateTime");
 
@@ -227,38 +226,16 @@ namespace Website1.Migrations
 
                     b.Property<string>("WorkZipCode");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
                 });
 
             modelBuilder.Entity("Website1.Models.Dashboard", b =>
                 {
-                    b.Property<string>("Id");
-
-                    b.Property<int>("DashboardId");
-
-                    b.Property<int>("DashboardId1");
-
-                    b.Property<int>("DashboardId10");
-
-                    b.Property<int>("DashboardId2");
-
-                    b.Property<int>("DashboardId3");
-
-                    b.Property<int>("DashboardId4");
-
-                    b.Property<int>("DashboardId5");
-
-                    b.Property<int>("DashboardId6");
-
-                    b.Property<int>("DashboardId7");
-
-                    b.Property<int>("DashboardId8");
-
-                    b.Property<int>("DashboardId9");
+                    b.Property<string>("DashboardId");
 
                     b.Property<string>("Name");
 
-                    b.HasKey("Id");
+                    b.HasKey("DashboardId");
                 });
 
             modelBuilder.Entity("Website1.Models.Education", b =>
@@ -270,9 +247,9 @@ namespace Website1.Migrations
 
                     b.Property<DateTime>("CreateDateTime");
 
-                    b.Property<DateTime>("CreatedById");
+                    b.Property<int>("CreatedById");
 
-                    b.Property<int>("DashboardId");
+                    b.Property<string>("DashboardDashboardId");
 
                     b.Property<DateTime?>("DatesAttended");
 
@@ -282,9 +259,9 @@ namespace Website1.Migrations
 
                     b.Property<string>("FieldofStudy");
 
-                    b.Property<char>("Grade");
+                    b.Property<string>("Grade");
 
-                    b.Property<DateTime>("ModifiedById");
+                    b.Property<int>("ModifiedById");
 
                     b.Property<DateTime>("ModifiedDateTime");
 
@@ -300,13 +277,13 @@ namespace Website1.Migrations
 
                     b.Property<DateTime>("CreateDateTime");
 
-                    b.Property<DateTime>("CreatedById");
+                    b.Property<int>("CreatedById");
 
-                    b.Property<int>("DashboardId");
+                    b.Property<string>("DashboardDashboardId");
 
                     b.Property<string>("Description");
 
-                    b.Property<DateTime>("ModifiedById");
+                    b.Property<int>("ModifiedById");
 
                     b.Property<DateTime>("ModifiedDateTime");
 
@@ -322,17 +299,13 @@ namespace Website1.Migrations
 
                     b.Property<DateTime>("CreateDateTime");
 
-                    b.Property<DateTime>("CreatedById");
+                    b.Property<int>("CreatedById");
 
-                    b.Property<int>("DashboardId");
+                    b.Property<string>("DashboardDashboardId");
 
-                    b.Property<string>("Description");
-
-                    b.Property<DateTime>("ModifiedById");
+                    b.Property<int>("ModifiedById");
 
                     b.Property<DateTime>("ModifiedDateTime");
-
-                    b.Property<string>("Name");
 
                     b.HasKey("Id");
                 });
@@ -344,9 +317,9 @@ namespace Website1.Migrations
 
                     b.Property<DateTime>("CreateDateTime");
 
-                    b.Property<DateTime>("CreatedById");
+                    b.Property<int>("CreatedById");
 
-                    b.Property<int>("DashboardId");
+                    b.Property<string>("DashboardDashboardId");
 
                     b.Property<string>("Description");
 
@@ -354,7 +327,7 @@ namespace Website1.Migrations
 
                     b.Property<string>("JobTitle");
 
-                    b.Property<DateTime>("ModifiedById");
+                    b.Property<int>("ModifiedById");
 
                     b.Property<DateTime>("ModifiedDateTime");
 
@@ -376,9 +349,9 @@ namespace Website1.Migrations
 
                     b.Property<DateTime>("CreateDateTime");
 
-                    b.Property<DateTime>("CreatedById");
+                    b.Property<int>("CreatedById");
 
-                    b.Property<int>("DashboardId");
+                    b.Property<string>("DashboardDashboardId");
 
                     b.Property<string>("FooterColor");
 
@@ -386,7 +359,7 @@ namespace Website1.Migrations
 
                     b.Property<string>("LayoutName");
 
-                    b.Property<DateTime>("ModifiedById");
+                    b.Property<int>("ModifiedById");
 
                     b.Property<DateTime>("ModifiedDateTime");
 
@@ -410,8 +383,6 @@ namespace Website1.Migrations
 
                     b.Property<DateTime>("CreatedById");
 
-                    b.Property<int>("DashboardId");
-
                     b.Property<DateTime>("ModifiedById");
 
                     b.Property<DateTime>("ModifiedDateTime");
@@ -432,17 +403,45 @@ namespace Website1.Migrations
 
                     b.Property<DateTime>("CreateDateTime");
 
-                    b.Property<DateTime>("CreatedById");
+                    b.Property<int>("CreatedById");
 
-                    b.Property<int>("DashboardId");
+                    b.Property<string>("DashboardDashboardId");
 
-                    b.Property<DateTime>("ModifiedById");
+                    b.Property<int>("ModifiedById");
 
                     b.Property<DateTime>("ModifiedDateTime");
 
                     b.Property<string>("NoteContent");
 
                     b.Property<string>("Title");
+
+                    b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Website1.Models.Profile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreateDateTime");
+
+                    b.Property<int>("CreatedById");
+
+                    b.Property<string>("DashboardDashboardId");
+
+                    b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<bool>("IsLookingForJob");
+
+                    b.Property<int>("ModifiedById");
+
+                    b.Property<DateTime>("ModifiedDateTime");
+
+                    b.Property<string>("PicFile");
+
+                    b.Property<string>("Sex");
+
+                    b.Property<string>("SocialSecurity");
 
                     b.HasKey("Id");
                 });
@@ -454,13 +453,13 @@ namespace Website1.Migrations
 
                     b.Property<DateTime>("CreateDateTime");
 
-                    b.Property<DateTime>("CreatedById");
+                    b.Property<int>("CreatedById");
 
-                    b.Property<int>("DashboardId");
+                    b.Property<string>("DashboardDashboardId");
 
                     b.Property<string>("Description");
 
-                    b.Property<DateTime>("ModifiedById");
+                    b.Property<int>("ModifiedById");
 
                     b.Property<DateTime>("ModifiedDateTime");
 
@@ -476,11 +475,11 @@ namespace Website1.Migrations
 
                     b.Property<DateTime>("CreateDateTime");
 
-                    b.Property<DateTime>("CreatedById");
+                    b.Property<int>("CreatedById");
 
-                    b.Property<int>("DashboardId");
+                    b.Property<string>("DashboardDashboardId");
 
-                    b.Property<DateTime>("ModifiedById");
+                    b.Property<int>("ModifiedById");
 
                     b.Property<DateTime>("ModifiedDateTime");
 
@@ -523,67 +522,55 @@ namespace Website1.Migrations
 
             modelBuilder.Entity("Website1.Models.Comment", b =>
                 {
-                    b.HasOne("Website1.Models.Dashboard")
+                    b.HasOne("Website1.Models.Status")
                         .WithMany()
-                        .HasForeignKey("DashboardId")
-                        .HasPrincipalKey("DashboardId");
+                        .HasForeignKey("StatusId");
                 });
 
             modelBuilder.Entity("Website1.Models.ContactInfo", b =>
                 {
                     b.HasOne("Website1.Models.Dashboard")
                         .WithMany()
-                        .HasForeignKey("DashboardId")
-                        .HasPrincipalKey("DashboardId1");
+                        .HasForeignKey("DashboardDashboardId");
                 });
 
             modelBuilder.Entity("Website1.Models.Education", b =>
                 {
                     b.HasOne("Website1.Models.Dashboard")
                         .WithMany()
-                        .HasForeignKey("DashboardId")
-                        .HasPrincipalKey("DashboardId2");
+                        .HasForeignKey("DashboardDashboardId");
                 });
 
             modelBuilder.Entity("Website1.Models.Favorite", b =>
                 {
                     b.HasOne("Website1.Models.Dashboard")
                         .WithMany()
-                        .HasForeignKey("DashboardId")
-                        .HasPrincipalKey("DashboardId3");
+                        .HasForeignKey("DashboardDashboardId");
                 });
 
             modelBuilder.Entity("Website1.Models.Interest", b =>
                 {
                     b.HasOne("Website1.Models.Dashboard")
                         .WithMany()
-                        .HasForeignKey("DashboardId")
-                        .HasPrincipalKey("DashboardId4");
+                        .HasForeignKey("DashboardDashboardId");
                 });
 
             modelBuilder.Entity("Website1.Models.Job", b =>
                 {
                     b.HasOne("Website1.Models.Dashboard")
                         .WithMany()
-                        .HasForeignKey("DashboardId")
-                        .HasPrincipalKey("DashboardId5");
+                        .HasForeignKey("DashboardDashboardId");
                 });
 
             modelBuilder.Entity("Website1.Models.Layout", b =>
                 {
                     b.HasOne("Website1.Models.Dashboard")
                         .WithMany()
-                        .HasForeignKey("DashboardId")
-                        .HasPrincipalKey("DashboardId6");
+                        .HasForeignKey("DashboardDashboardId");
                 });
 
             modelBuilder.Entity("Website1.Models.Like", b =>
                 {
-                    b.HasOne("Website1.Models.Dashboard")
-                        .WithMany()
-                        .HasForeignKey("DashboardId")
-                        .HasPrincipalKey("DashboardId7");
-
                     b.HasOne("Website1.Models.Status")
                         .WithMany()
                         .HasForeignKey("StatusId");
@@ -593,24 +580,28 @@ namespace Website1.Migrations
                 {
                     b.HasOne("Website1.Models.Dashboard")
                         .WithMany()
-                        .HasForeignKey("DashboardId")
-                        .HasPrincipalKey("DashboardId8");
+                        .HasForeignKey("DashboardDashboardId");
+                });
+
+            modelBuilder.Entity("Website1.Models.Profile", b =>
+                {
+                    b.HasOne("Website1.Models.Dashboard")
+                        .WithOne()
+                        .HasForeignKey("Website1.Models.Profile", "DashboardDashboardId");
                 });
 
             modelBuilder.Entity("Website1.Models.Skill", b =>
                 {
                     b.HasOne("Website1.Models.Dashboard")
                         .WithMany()
-                        .HasForeignKey("DashboardId")
-                        .HasPrincipalKey("DashboardId9");
+                        .HasForeignKey("DashboardDashboardId");
                 });
 
             modelBuilder.Entity("Website1.Models.Status", b =>
                 {
                     b.HasOne("Website1.Models.Dashboard")
                         .WithMany()
-                        .HasForeignKey("DashboardId")
-                        .HasPrincipalKey("DashboardId10");
+                        .HasForeignKey("DashboardDashboardId");
                 });
         }
     }

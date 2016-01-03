@@ -1,8 +1,4 @@
 ﻿using System;
-using Microsoft.Data.Entity.Metadata.Internal;
-using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 namespace Website1.Models
 {
@@ -10,13 +6,9 @@ namespace Website1.Models
     {
         public DateTime ModifiedDateTime { get; set; }
         public DateTime CreateDateTime { get; set; }
-        public DateTime CreatedById { get; set; }
-        public DateTime ModifiedById { get; set; }
-
-        [Required]
-        public int DashboardId { get; set; }
-
-        [ForeignKey("DashboardId")]
+        public int CreatedById { get; set; }
+        public int ModifiedById { get; set; }
+        
         public virtual Dashboard Dashboard { get; set; }
 
     }

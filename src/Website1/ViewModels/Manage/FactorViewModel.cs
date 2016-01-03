@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Website1.ViewModels.Manage
+﻿namespace Website1.ViewModels.Manage
 {
     public class FactorViewModel
     {

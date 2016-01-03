@@ -4,8 +4,7 @@ namespace Website1.Models
 {
     public class ContactInfo : Edit
     {
-        public int Id { get; set; }
-
+        public int id { get; set; }
         public string HomeStreetAddress { get; set; }
         public string HomeStreetAddress2 { get; set; }
         public string HomeCity { get; set; }
