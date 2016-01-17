@@ -1,10 +1,10 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     var serviceId = 'externalAuthService';
 
     angular.module('app.security')
-        .factory(serviceId, ['$location', '$q', 'storageService', 'appActivityService', 'notifierService','userService', externalAuthService]);
+        .factory(serviceId, ['$location', '$q', 'storageService', 'appActivityService', 'notifierService', 'userService', externalAuthService]);
 
     function externalAuthService($location, $q, storageService, appActivityService, notifierService, userService) {
         var registrationInfo, associationInfo;
@@ -23,14 +23,14 @@
             var locationPath = $location.path(), redirectPath = "/", deferred = $q.defer();
 
             if (locationPath && locationPath.indexOf("/externalauth") === 0) {
-               
+
                 var externalActionResult = parseResponse($location.hash());
 
                 cleanUp();
 
                 if (!externalActionResult || !externalActionResult.access_token) {
                     notifierService.show({ message: "something went wrong. Error: rereiving access token", type: "error" });
-                    appActivityService.idle("externalAuthService");                    
+                    appActivityService.idle("externalAuthService");
                     $location.path("/signIn").hash('');
                     deferred.resolve(true);
 
@@ -53,37 +53,37 @@
 
                     userService.getUserInfo()
                         .then(
-				            function (result) {
-				                if (result.hasRegistered) {
-				                    userService.setUser(result);
+                            function(result) {
+                                if (result.hasRegistered) {
+                                    userService.setUser(result);
 
-				                    if (associationInfo) {
-				                        associateLogin();
-				                    } else {				                        
-				                        $location.path(redirectPath).hash('');
-				                    }
-				                } else {
-				                    registrationInfo = {
-				                        email: result.email,
-				                        loginProvider: result.loginProvider,
-				                        username: result.userName
-				                    };
-				                    
-				                    $location.path("/externalRegister").hash('');
-				                }
+                                    if (associationInfo) {
+                                        associateLogin();
+                                    } else {
+                                        $location.path(redirectPath).hash('');
+                                    }
+                                } else {
+                                    registrationInfo = {
+                                        email: result.email,
+                                        loginProvider: result.loginProvider,
+                                        username: result.userName
+                                    };
 
-				                deferred.resolve(true);
-				            },
-				            function (result) {
-				                //error	
-				                notifierService.show({ message: "something went wrong. " + result.error, type: "error" });
-				                
-				                $location.path("/signIn").hash('');
+                                    $location.path("/externalRegister").hash('');
+                                }
 
-				                deferred.reject(true);
-				            })
+                                deferred.resolve(true);
+                            },
+                            function(result) {
+                                //error	
+                                notifierService.show({ message: "something went wrong. " + result.error, type: "error" });
+
+                                $location.path("/signIn").hash('');
+
+                                deferred.reject(true);
+                            })
                         .finally(
-                            function () {
+                            function() {
                                 appActivityService.idle("externalAuthService");
                             });
                 }
@@ -91,23 +91,23 @@
                 deferred.reject(false);
                 appActivityService.idle("externalAuthService");
             }
-            
+
             return deferred.promise;
         }
 
         function associateLogin() {
             userService.addExternalLogin(associationInfo)
                 .then(
-				    function (result) {
-				        //success
-				        notifierService.show({ message: "login added successfully", type: "info" });
-				        return result;
-				    },
-				    function (result) {
-				        //error
-				        notifierService.show({ message: "something went wrong associating login", type: "error" });
-				        return $q.reject(result);
-				    })
+                    function(result) {
+                        //success
+                        notifierService.show({ message: "login added successfully", type: "info" });
+                        return result;
+                    },
+                    function(result) {
+                        //error
+                        notifierService.show({ message: "something went wrong associating login", type: "error" });
+                        return $q.reject(result);
+                    })
                 .finally(
                     function always() {
                         appActivityService.idle("externalAuthService");
@@ -115,11 +115,11 @@
                     });
         }
 
-        function cleanUp() {            
-            storageService.remove("registrationInfo");            
+        function cleanUp() {
+            storageService.remove("registrationInfo");
         }
 
-        function getRegistrationInfo() {  
+        function getRegistrationInfo() {
             return registrationInfo;
         }
 
@@ -127,16 +127,16 @@
             return associationInfo;
         }
 
-        function parseResponse(response){            
+        function parseResponse(response) {
             var result = {};
 
-            var urlParts = response.split("&");                       
+            var urlParts = response.split("&");
 
-            urlParts.forEach(function (item) {
+            urlParts.forEach(function(item) {
                 var splitItem = item.split("=");
                 result[splitItem[0]] = decodeURIComponent(splitItem[1]);
             });
-            
+
             return result;
         }
     }

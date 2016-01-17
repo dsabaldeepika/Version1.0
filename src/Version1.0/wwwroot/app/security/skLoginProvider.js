@@ -4,9 +4,9 @@
     // TODO: replace app with your module name
     angular.module('app.security')
         .directive('skLoginProvider', ['baseUrl', skLoginProvider]);
-    
+
     function skLoginProvider(baseUrl) {
-        var directive = {            
+        var directive = {
             restrict: 'AE',
             replace: true,
             scope: {
@@ -16,7 +16,7 @@
             templateUrl: baseUrl + 'security/skLoginProvider.html'
         };
 
-        return directive;        
+        return directive;
     }
 
 })();

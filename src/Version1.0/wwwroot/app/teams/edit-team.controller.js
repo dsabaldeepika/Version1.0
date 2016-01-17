@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('EditTeamCtrl', EditTeamCtrl);
@@ -24,11 +24,11 @@
         function activate() {
         }
 
-        function cancel(){
+        function cancel() {
             $modalInstance.dismiss();
         }
 
-        function save(){
+        function save() {
             $modalInstance.close(vm.editableItem);
         }
     }

@@ -26,8 +26,12 @@
                         Action <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a ui-sref="location({ id: location.id })">Edit</a></li>
-                        <li><a ng-click="vm.deleteItem(location.id)">Delete</a></li>
+                        <li>
+                            <a ui-sref="location({ id: location.id })">Edit</a>
+                        </li>
+                        <li>
+                            <a ng-click="vm.deleteItem(location.id)">Delete</a>
+                        </li>
                     </ul>
                 </div>
             </td>

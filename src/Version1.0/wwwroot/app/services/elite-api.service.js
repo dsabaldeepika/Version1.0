@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').factory('eliteApi', eliteApi);
@@ -34,32 +34,32 @@
         return service;
 
 
-        function addLeague(league){
+        function addLeague(league) {
             return httpPost('/leagues', league);
         }
 
-        function deleteGame(id){
+        function deleteGame(id) {
             return httpDelete('/games/' + id);
         }
 
-        function deleteLeague(id){
+        function deleteLeague(id) {
             return httpDelete('/leagues/' + id);
         }
 
-        function deleteLocation(id){
+        function deleteLocation(id) {
             return httpDelete('/locations/' + id);
         }
 
-        function deleteTeam(id){
+        function deleteTeam(id) {
             return httpDelete('/teams/' + id);
         }
 
-        function getGames(leagueId){
+        function getGames(leagueId) {
             var url = getUrlByLeagueId('/games', leagueId);
             return httpGet(url);
         }
 
-        function getLeague(leagueId){
+        function getLeague(leagueId) {
             return httpGet('/leagues/' + leagueId);
         }
 
@@ -80,39 +80,40 @@
             return httpGet(url);
         }
 
-        function saveLeague(league){
+        function saveLeague(league) {
             return httpPatch('/leagues/' + league.id, league);
         }
 
-        function saveLocation(location){
+        function saveLocation(location) {
             return saveItem('/locations', location);
         }
 
-        function saveGame(game){
+        function saveGame(game) {
             return saveItem('/games', game);
         }
 
-        function saveTeam(team){
+        function saveTeam(team) {
             return saveItem('/teams', team);
         }
 
         /** Private Methods **/
 
-        function getUrlByLeagueId(url, leagueId){
+        function getUrlByLeagueId(url, leagueId) {
             return url + '?$top=100&$filter=' + encodeURIComponent('leagueId eq \'' + leagueId + '\'');
         }
 
-        function httpDelete(url){
+        function httpDelete(url) {
             return httpExecute(url, 'DELETE');
         }
 
-        function httpExecute(requestUrl, method, data){
+        function httpExecute(requestUrl, method, data) {
             appSpinner.showSpinner();
             return $http({
                 url: baseUrl + requestUrl,
                 method: method,
                 data: data,
-                headers: requestConfig.headers }).then(function(response){
+                headers: requestConfig.headers
+            }).then(function(response) {
 
                 appSpinner.hideSpinner();
                 console.log('**response from EXECUTE', response);
@@ -120,19 +121,19 @@
             });
         }
 
-        function httpGet(url){
+        function httpGet(url) {
             return httpExecute(url, 'GET');
         }
 
-        function httpPatch(url, data){
+        function httpPatch(url, data) {
             return httpExecute(url, 'PATCH', data);
         }
 
-        function httpPost(url, data){
+        function httpPost(url, data) {
             return httpExecute(url, 'POST', data);
         }
 
-        function saveItem(url, item){
+        function saveItem(url, item) {
             if (item.id) {
                 return httpPatch(url + '/' + item.id, item);
             } else {

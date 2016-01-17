@@ -1,8 +1,8 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     var serviceId = 'storageService';
-    
+
     angular.module('app.core')
         .factory(serviceId, ['utilityService', storageService]);
 
@@ -23,8 +23,8 @@
                 value = "!!stringified!!" + JSON.stringify(value);
             }
 
-            if (persist) {                
-                localStorage.setItem(key,value);
+            if (persist) {
+                localStorage.setItem(key, value);
             } else {
                 sessionStorage.setItem(key, value);
 
@@ -38,11 +38,11 @@
         function retrieve(key) {
             //if key exists in session storage return that if not try to return local
             var value;
-            
+
             value = localStorage.getItem(key);
 
             if (!value) {
-                value = sessionStorage.getItem(key);                
+                value = sessionStorage.getItem(key);
             }
 
             if (utilityService.exists(value) && value.indexOf("!!stringified!!") > -1) {

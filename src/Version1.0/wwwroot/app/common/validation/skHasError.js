@@ -16,7 +16,7 @@
 
         function link(scope, element, attrs, ngMessages) {
             var renderMessages = ngMessages.renderMessages,
-              hasErrorTarget;
+                hasErrorTarget;
 
             if (!hasErrorTarget) {
                 if (attrs.skHasError) {
@@ -26,7 +26,7 @@
                 }
             }
 
-            ngMessages.renderMessages = function (values, multiple, element) {
+            ngMessages.renderMessages = function(values, multiple, element) {
                 renderMessages.apply(this, arguments);
 
                 if ($.isEmptyObject(values)) {

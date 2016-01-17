@@ -5,9 +5,9 @@
         .module('app.core')
         .directive('skFocusOnSetPristine', skFocusOnSetPristine);
 
-    
-    function skFocusOnSetPristine () {
-        
+
+    function skFocusOnSetPristine() {
+
         var directive = {
             link: link,
             restrict: 'A'
@@ -17,18 +17,18 @@
         function link(scope, element, attrs) {
             //get the parent form element and form on the scope
             var formElement = element.parents('form'),
-              form = scope[formElement.attr('name')],
-              focusElement = element;
+                form = scope[formElement.attr('name')],
+                focusElement = element;
 
-            scope.$watch(function () {
-                return form.$pristine;
+            scope.$watch(function() {
+                    return form.$pristine;
 
-            },
-              function (newValue, oldValue) {
-                  if (newValue && !oldValue) {
-                      element.focus();
-                  }
-              });
+                },
+                function(newValue, oldValue) {
+                    if (newValue && !oldValue) {
+                        element.focus();
+                    }
+                });
         }
     }
 

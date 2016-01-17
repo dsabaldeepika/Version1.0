@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular.module('eliteAdmin').factory('appSpinner', appSpinner);

@@ -1,6 +1,6 @@
-﻿(function () {
+﻿(function() {
     'use strict';
-        
+
     var serviceId = 'appActivityService';
 
     angular.module('app.core')
@@ -8,21 +8,21 @@
 
     function appActivityService($rootScope) {
         var service = {
-            busy: busy,            
+            busy: busy,
             idle: idle,
-            info:{
+            info: {
                 isBusy: false
             },
-            reset: reset         
+            reset: reset
         };
 
-        var activities = [];        
+        var activities = [];
 
         return service;
 
         function busy(name) {
             if (!name) {
-                throw {name:'Error', message:'A valid activity name must be provided.'};
+                throw { name: 'Error', message: 'A valid activity name must be provided.' };
             }
 
             if (!activities[name]) {
@@ -42,20 +42,20 @@
             }
 
             updateStatus();
-        }        
+        }
 
         function updateStatus() {
 
             var newStatus = activities.length > 0;
 
-            if(service.info.isBusy !== newStatus){
+            if (service.info.isBusy !== newStatus) {
                 service.info.isBusy = newStatus;
                 $rootScope.$broadcast("appActivityService:isBusyChanged", { busy: service.info.isBusy });
             }
         }
 
         function reset() {
-            activities = [];            
+            activities = [];
             updateStatus();
         }
     }

@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').factory('dialogsService', dialogsService);
@@ -12,7 +12,7 @@
 
         return service;
 
-        function confirm(message, title, buttons){
+        function confirm(message, title, buttons) {
             var modalInstance = $modal.open({
                 templateUrl: '/app/shared/confirm-modal.html',
                 controller: 'ConfirmModalCtrl',

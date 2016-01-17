@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('LocationsCtrl', LocationsCtrl);
@@ -23,8 +23,8 @@
 
         function deleteItem(id) {
             dialogs.confirm('Are you sure you want to Delete this item?', 'Delete?', ['OK', 'Cancel'])
-                .then(function(){
-                    eliteApi.deleteLocation(id).then(function(data){
+                .then(function() {
+                    eliteApi.deleteLocation(id).then(function(data) {
                         _.remove(vm.locations, { 'id': id });
                     });
                 });

@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('ShellCtrl', ShellCtrl);
@@ -25,9 +25,9 @@
 
         activate();
 
-        function activate() { }
+        function activate() {}
 
-        $rootScope.$on('spinner.toggle', function (event, args) {
+        $rootScope.$on('spinner.toggle', function(event, args) {
             vm.showSpinner = args.show;
             if (args.message) {
                 vm.spinnerMessage = args.message;

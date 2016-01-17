@@ -1,9 +1,9 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular
-      .module('app.shell')
-      .directive('skNavLinks', skNavLinks);
+        .module('app.shell')
+        .directive('skNavLinks', skNavLinks);
 
     skNavLinks.$inject = ['$rootScope', '$location', 'baseUrl'];
 
@@ -20,7 +20,7 @@
         return directive;
 
         function link(scope, element, attrs) {
-            scope.isTopLevel = function (link) {
+            scope.isTopLevel = function(link) {
                 return !link.parent;
             };
 
@@ -29,7 +29,7 @@
             function setInitialActive() {
                 if (scope.navLinks && $location.path()) {
                     var activePath = $location.path().substring(1);
-                    scope.navLinks.forEach(function (navLink) {
+                    scope.navLinks.forEach(function(navLink) {
                         navLink.isActive = navLink.url === activePath;
                     });
                 }

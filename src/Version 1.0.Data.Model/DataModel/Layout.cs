@@ -12,7 +12,7 @@ namespace ProfilePort.DataModel
         public string FooterColor { get; set; }
         public string NavigationBarColor { get; set; }
         public string BackgroundColor { get; set; }
-    
+
         [ForeignKey("DashboardId")]
         public virtual Dashboard Dashboard { get; set; }
     }

@@ -1,8 +1,8 @@
-﻿(function () {
+﻿(function() {
     'use strict';
-    
+
     angular.module('app.security')
-            .controller('ExternalRegisterController', ExternalRegisterController);
+        .controller('ExternalRegisterController', ExternalRegisterController);
 
     ExternalRegisterController.$inject = ['$location', '$window', 'externalAuthService', 'appActivityService', 'notifierService', 'userService']
 
@@ -41,21 +41,21 @@
 
         function register() {
             userService.registerExternal(vm.registration).then(
-                function (result) {
-                    notifierService.show({ message: "registered successfully as " + userService.info.username, type: "info" });                    
+                function(result) {
+                    notifierService.show({ message: "registered successfully as " + userService.info.username, type: "info" });
                     userService.signInExternal(vm.registration.loginProvider)
                         .then(
-                            function (result) {
+                            function(result) {
                                 //point to auth server
-                                $window.location.href = userService.authServer + result.url;                                
+                                $window.location.href = userService.authServer + result.url;
                             },
-				            function (result) {				                
-				                //notifierService.show({ message: "something went wrong signing in. Error" + result.error, type: "error" });
-				            });
+                            function(result) {
+                                //notifierService.show({ message: "something went wrong signing in. Error" + result.error, type: "error" });
+                            });
                 },
-				function (result) {
-				    notifierService.show({ message: result.error, type: "error" });
-				});
+                function(result) {
+                    notifierService.show({ message: result.error, type: "error" });
+                });
         }
     }
 })();

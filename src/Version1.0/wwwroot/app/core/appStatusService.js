@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     var serviceId = 'appStatusService';
@@ -12,9 +12,9 @@
 
         var service = {
             whenReady: whenReady,
-            info:{
+            info: {
                 ready: false
-            },            
+            },
             isReady: isReady
         };
 
@@ -43,7 +43,7 @@
         }
 
         function resolvePromises() {
-            deferreds.forEach(function (deferred) {
+            deferreds.forEach(function(deferred) {
                 deferred.resolve();
             });
 

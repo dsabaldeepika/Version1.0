@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular
@@ -16,7 +16,7 @@
 
         return directive;
 
-        function link(scope, element, attrs, ngModel) { 
+        function link(scope, element, attrs, ngModel) {
             var asyncValidators = scope.$eval(attrs["skAsyncValidators"]);
 
             if (asyncValidators) {

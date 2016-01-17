@@ -12,6 +12,5 @@ namespace ProfilePort.DataModel
         public string SocialSecurity { get; set; }
         public string PicFile { get; set; }
         public bool IsLookingForJob { get; set; }
-        
     }
 }

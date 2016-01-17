@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProfilePort.DataModel
 {
-    public class Education :Edit
+    public class Education : Edit
     {
         public int EducationId { get; set; }
 
@@ -14,7 +14,7 @@ namespace ProfilePort.DataModel
         public char Grade { get; set; }
         public string Activities { get; set; }
         public string Description { get; set; }
-        
+
         [ForeignKey("DashboardId")]
         public virtual Dashboard Dashboard { get; set; }
     }

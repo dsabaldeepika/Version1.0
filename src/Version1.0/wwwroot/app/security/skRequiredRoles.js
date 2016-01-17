@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     // TODO: replace app with your module name
@@ -9,16 +9,16 @@
 
     function skRequiredRoles(guardSvc) {
         var directive = {
-            restrict: 'A',            
-            link: link       
+            restrict: 'A',
+            link: link
         };
 
         return directive;
 
         function link(scope, element, attr) {
-            scope.$watch(attr.skRequiredRoles, function (value) {
-                
-            });            
+            scope.$watch(attr.skRequiredRoles, function(value) {
+
+            });
         }
     }
 

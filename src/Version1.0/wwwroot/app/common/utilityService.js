@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular
@@ -29,7 +29,7 @@
                 if (typeof (comparison) === 'function') {
                     comparator = comparison;
                 } else {
-                    comparator = function (value) {
+                    comparator = function(value) {
                         if (value === comparison) {
                             return true;
                         } else {
@@ -38,7 +38,7 @@
                     };
                 }
 
-                $.each(array, function (i, v) {
+                $.each(array, function(i, v) {
                     res = comparator(v);
                     return !res;
                 });
@@ -58,18 +58,18 @@
                 if (typeof (comparison) === 'function') {
                     comparator = comparison;
                 } else {
-                    comparator = function (v) {
+                    comparator = function(v) {
                         if (v === comparison) {
                             return array.indexOf(v);
-                        } 
+                        }
                     };
                 }
 
-                array.forEach(function (v) {
+                array.forEach(function(v) {
                     if (comparator(v) && res === -1) {
                         res = array.indexOf(v);
                     }
-                });       
+                });
 
                 return res;
 
@@ -94,8 +94,8 @@
                 return dfd.resolve();
             }
 
-            $.each(array, function (i, v) {
-                $.when(asyncFunction(v)).then(function () {
+            $.each(array, function(i, v) {
+                $.when(asyncFunction(v)).then(function() {
                     i++;
                     if (i === array.length) {
                         return dfd.resolve();
@@ -127,7 +127,13 @@
 
         function parseQueryString(queryString) {
             var data = {},
-                pairs, pair, separatorIndex, escapedKey, escapedValue, key, value;
+                pairs,
+                pair,
+                separatorIndex,
+                escapedKey,
+                escapedValue,
+                key,
+                value;
 
             if (queryString === null) {
                 return data;
@@ -157,7 +163,7 @@
         }
 
         function arrayIntersect(array1, array2) {
-            return $.grep(array1, function (i) {
+            return $.grep(array1, function(i) {
                 return $.inArray(i, array2) > -1;
             });
         }

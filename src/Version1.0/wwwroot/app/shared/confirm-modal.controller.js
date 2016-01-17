@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('ConfirmModalCtrl', ConfirmModalCtrl);
@@ -14,11 +14,11 @@
         vm.ok = ok;
         vm.properties = data;
 
-        function cancel(){
+        function cancel() {
             $modalInstance.dismiss();
         }
 
-        function ok(){
+        function ok() {
             $modalInstance.close();
         }
 

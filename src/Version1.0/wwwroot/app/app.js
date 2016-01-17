@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
     var app = angular.module('eliteAdmin', [
         // Angular modules
@@ -60,9 +60,11 @@
                 controller: 'LocationsCtrl',
                 controllerAs: 'vm',
                 resolve: {
-                    initialData: ['eliteApi', function (eliteApi) {
-                        return eliteApi.getLocations();
-                    }]
+                    initialData: [
+                        'eliteApi', function(eliteApi) {
+                            return eliteApi.getLocations();
+                        }
+                    ]
                 }
             })
             .state('location', {
@@ -71,19 +73,25 @@
                 controller: 'EditLocationCtrl',
                 controllerAs: 'vm',
                 resolve: {
-                    initialData: ['$stateParams', 'eliteApi', function ($stateParams, eliteApi) {
-                        return ($stateParams.id ? eliteApi.getLocation($stateParams.id) : {});
-                    }],
-                    maps: ['uiGmapGoogleMapApi', function(uiGmapGoogleMapApi){
-                        return uiGmapGoogleMapApi;
-                    }],
-                    currentPosition: ['$q', function($q){
-                        var deferred = $q.defer();
-                        navigator.geolocation.getCurrentPosition(function(position){
-                            deferred.resolve(position);
-                        });
-                        return deferred.promise;
-                    }]
+                    initialData: [
+                        '$stateParams', 'eliteApi', function($stateParams, eliteApi) {
+                            return ($stateParams.id ? eliteApi.getLocation($stateParams.id) : {});
+                        }
+                    ],
+                    maps: [
+                        'uiGmapGoogleMapApi', function(uiGmapGoogleMapApi) {
+                            return uiGmapGoogleMapApi;
+                        }
+                    ],
+                    currentPosition: [
+                        '$q', function($q) {
+                            var deferred = $q.defer();
+                            navigator.geolocation.getCurrentPosition(function(position) {
+                                deferred.resolve(position);
+                            });
+                            return deferred.promise;
+                        }
+                    ]
                 }
             })
             .state('leagues', {
@@ -92,9 +100,11 @@
                 controller: 'LeaguesCtrl',
                 controllerAs: 'vm',
                 resolve: {
-                    initialData: ['eliteApi', function (eliteApi) {
-                        return eliteApi.getLeagues();
-                    }]
+                    initialData: [
+                        'eliteApi', function(eliteApi) {
+                            return eliteApi.getLeagues();
+                        }
+                    ]
                 }
             })
             .state('league', {
@@ -112,9 +122,11 @@
                         controller: 'TeamsCtrl',
                         controllerAs: 'vm',
                         resolve: {
-                            initialData: ['$stateParams', 'eliteApi', function ($stateParams, eliteApi) {
-                                return eliteApi.getTeams($stateParams.leagueId);
-                            }]
+                            initialData: [
+                                '$stateParams', 'eliteApi', function($stateParams, eliteApi) {
+                                    return eliteApi.getTeams($stateParams.leagueId);
+                                }
+                            ]
                         }
                     }
                     //'view1': {
@@ -136,9 +148,11 @@
                         controller: 'GamesCtrl',
                         controllerAs: 'vm',
                         resolve: {
-                            initialData: ['$stateParams', 'gamesInitialDataService', function ($stateParams, gamesInitialDataService) {
-                                return gamesInitialDataService.getData($stateParams.leagueId);
-                            }]
+                            initialData: [
+                                '$stateParams', 'gamesInitialDataService', function($stateParams, gamesInitialDataService) {
+                                    return gamesInitialDataService.getData($stateParams.leagueId);
+                                }
+                            ]
                         }
                     }
                 }
@@ -151,9 +165,11 @@
                         controller: 'GamesCtrl',
                         controllerAs: 'vm',
                         resolve: {
-                            initialData: ['$stateParams', 'gamesInitialDataService', function ($stateParams, gamesInitialDataService) {
-                                return gamesInitialDataService.getData($stateParams.leagueId);
-                            }]
+                            initialData: [
+                                '$stateParams', 'gamesInitialDataService', function($stateParams, gamesInitialDataService) {
+                                    return gamesInitialDataService.getData($stateParams.leagueId);
+                                }
+                            ]
                         }
                     }
                 }
@@ -166,9 +182,11 @@
                         controller: 'LeagueHomeCtrl',
                         controllerAs: 'vm',
                         resolve: {
-                            initialData: ['$stateParams', 'eliteApi', function ($stateParams, eliteApi) {
-                                return eliteApi.getLeague($stateParams.leagueId);
-                            }]
+                            initialData: [
+                                '$stateParams', 'eliteApi', function($stateParams, eliteApi) {
+                                    return eliteApi.getLeague($stateParams.leagueId);
+                                }
+                            ]
                         }
                     }
                 }
@@ -178,7 +196,9 @@
         $urlRouterProvider.otherwise('/');
     }
 
-    app.run(['$state', 'stateWatcherService', function ($state, stateWatcherService) {
-        // Include $route to kick start the router.
-    }]);
+    app.run([
+        '$state', 'stateWatcherService', function($state, stateWatcherService) {
+            // Include $route to kick start the router.
+        }
+    ]);
 })();

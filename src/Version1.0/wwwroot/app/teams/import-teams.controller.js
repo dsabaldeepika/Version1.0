@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('ImportTeamsCtrl', ImportTeamsCtrl);
@@ -23,7 +23,7 @@
                 { name: 'Coach', field: 'coach' },
                 { name: 'Division', field: 'divisionName' }
             ],
-            importerDataAddCallback: function(grid, newObjects){
+            importerDataAddCallback: function(grid, newObjects) {
                 vm.parsedData = vm.parsedData.concat(newObjects);
             },
             enableFiltering: true
@@ -39,7 +39,7 @@
             $modalInstance.dismiss();
         }
 
-        function importData(){
+        function importData() {
             $modalInstance.close(vm.parsedData);
         }
     }

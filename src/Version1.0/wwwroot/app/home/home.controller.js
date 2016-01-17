@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('HomeCtrl', HomeCtrl);
@@ -19,7 +19,7 @@
             console.log('current state data', $state.current.data);
         }
 
-        function navigate(){
+        function navigate() {
             $state.go('leagues');
         }
 

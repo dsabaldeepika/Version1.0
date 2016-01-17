@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('LeagueHomeCtrl', LeagueHomeCtrl);
@@ -23,15 +23,14 @@
         function activate() {
         }
 
-        function reset(){
+        function reset() {
             vm.homeContent = initialData.homeScreen;
         }
 
-        function save(){
+        function save() {
             vm.league.homeScreen = vm.homeContent;
             eliteApi.saveLeague(vm.league);
         }
-
 
 
     }

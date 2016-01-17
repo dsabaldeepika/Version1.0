@@ -2,9 +2,9 @@
     <!--<h2>Games</h2>-->
 
     <!--<tabset>-->
-        <!--<tab heading="Teams" select="vm.go('teams')"></tab>-->
-        <!--<tab heading="Games" active="true"></tab>-->
-        <!--<tab heading="League Home" select="vm.go('league-home')"></tab>-->
+    <!--<tab heading="Teams" select="vm.go('teams')"></tab>-->
+    <!--<tab heading="Games" active="true"></tab>-->
+    <!--<tab heading="League Home" select="vm.go('league-home')"></tab>-->
     <!--</tabset>-->
 
     <p></p>
@@ -37,9 +37,15 @@
                         Action <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a ng-click="vm.editItem(game)">Edit</a></li>
-                        <li><a ng-click="vm.editItem(game)">Scores</a></li>
-                        <li><a ng-click="vm.deleteItem(game.id)">Delete</a></li>
+                        <li>
+                            <a ng-click="vm.editItem(game)">Edit</a>
+                        </li>
+                        <li>
+                            <a ng-click="vm.editItem(game)">Scores</a>
+                        </li>
+                        <li>
+                            <a ng-click="vm.deleteItem(game.id)">Delete</a>
+                        </li>
                     </ul>
                 </div>
             </td>

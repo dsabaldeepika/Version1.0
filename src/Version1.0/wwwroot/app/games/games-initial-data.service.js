@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').factory('gamesInitialDataService', gamesInitialDataService);
@@ -21,7 +21,7 @@
                 eliteApi.getTeams(leagueId),
                 eliteApi.getGames(leagueId),
                 eliteApi.getLocations()
-            ]).then(function(results){
+            ]).then(function(results) {
                 return {
                     teams: results[0],
                     games: results[1],

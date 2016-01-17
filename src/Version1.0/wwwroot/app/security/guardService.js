@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular
@@ -7,7 +7,7 @@
             var siginInUrl = "/signIn", siginInUrlIsExternal = false;
 
             //options {url, urlIsExternal}
-            this.setSiginInUrl = function (options) {
+            this.setSiginInUrl = function(options) {
                 siginInUrlIsExternal = options.urlIsExternal;
                 siginInUrl = options.url;
 
@@ -16,8 +16,9 @@
                 }
             };
 
-            this.$get = ['$location', '$window', '$q', 'utilityService', 'userService', 'notifierService', 'appStatusService',
-            function accountResourceFactory($location, $window, $q, utilityService, userService, notifierService, appStatusService) {
+            this.$get = [
+                '$location', '$window', '$q', 'utilityService', 'userService', 'notifierService', 'appStatusService',
+                function accountResourceFactory($location, $window, $q, utilityService, userService, notifierService, appStatusService) {
                     var service = {
                         guardRoute: guardRoute,
                         authorized: authorized,
@@ -28,21 +29,21 @@
 
                     function guardRoute(requiredRoles) {
                         return appStatusService
-                                        .whenReady()
-                                        .finally(
-                                            function (requiredRoles) {
-                                                var authResult = authorize(requiredRoles);
+                            .whenReady()
+                            .finally(
+                                function(requiredRoles) {
+                                    var authResult = authorize(requiredRoles);
 
-                                                return $q(function (resolve, reject) {
-                                                    if (authResult.authorized) {
-                                                        resolve(authResult.authorized);
-                                                    } else {
-                                                        notifierService.show({ message: authResult.message, info: 'error' });
-                                                        redirectToSignIn();
-                                                        reject(authResult.authorized);
-                                                    }
-                                                });
-                                            });
+                                    return $q(function(resolve, reject) {
+                                        if (authResult.authorized) {
+                                            resolve(authResult.authorized);
+                                        } else {
+                                            notifierService.show({ message: authResult.message, info: 'error' });
+                                            redirectToSignIn();
+                                            reject(authResult.authorized);
+                                        }
+                                    });
+                                });
                     }
 
                     function authorized(requiredRoles) {
@@ -84,6 +85,7 @@
                             $location.path(siginInUrl);
                         }
                     }
-                }];
+                }
+            ];
         });
 })();

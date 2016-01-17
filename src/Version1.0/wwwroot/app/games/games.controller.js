@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('GamesCtrl', GamesCtrl);
@@ -38,28 +38,28 @@
 
         ////////////////
 
-        function eventDrop(calEvent){
+        function eventDrop(calEvent) {
             var game = _.find(vm.games, { 'id': calEvent.id });
             game.time = moment(calEvent.start).format('YYYY-MM-DDTHH:mm:00');
             eliteApi.saveGame(game);
         }
 
-        function eventClick(calEvent){
+        function eventClick(calEvent) {
             var game = _.find(vm.games, { 'id': calEvent.id });
             editItem(game);
         }
 
-        function dayClick(date){
+        function dayClick(date) {
             $scope.gamesCalendar.fullCalendar('changeView', 'agendaDay');
             $scope.gamesCalendar.fullCalendar('gotoDate', date);
         }
 
         function activate() {
-            _.forEach(vm.teams, function(team){
+            _.forEach(vm.teams, function(team) {
                 vm.teamsLookup[team.id] = team.name;
             });
 
-            _.forEach(vm.locations, function(location){
+            _.forEach(vm.locations, function(location) {
                 vm.locationsLookup[location.id] = location.name;
             });
 
@@ -67,7 +67,7 @@
             vm.eventSources = [gameEvents];
         }
 
-        function mapToGameEvent(game){
+        function mapToGameEvent(game) {
             return {
                 id: game.id,
                 start: game.time,
@@ -78,16 +78,16 @@
             };
         }
 
-        function deleteItem(id){
+        function deleteItem(id) {
             dialogs.confirm('Are you sure you want to Delete this item?', 'Delete?', ['OK', 'Cancel'])
-                .then(function(){
-                    eliteApi.deleteGame(id).then(function(data){
+                .then(function() {
+                    eliteApi.deleteGame(id).then(function(data) {
                         _.remove(vm.games, { 'id': id });
                     });
                 });
         }
 
-        function editItem(game){
+        function editItem(game) {
             var modalInstance = $modal.open({
                 templateUrl: '/app/games/edit-game.html',
                 controller: 'EditGameCtrl',
@@ -103,14 +103,14 @@
                 }
             });
 
-            modalInstance.result.then(function(result){
+            modalInstance.result.then(function(result) {
                 result.leagueId = $stateParams.leagueId;
-                eliteApi.saveGame(result).then(function(data){
-                    if (game){
+                eliteApi.saveGame(result).then(function(data) {
+                    if (game) {
                         _.assign(game, data);
                         var index = _.findIndex(vm.eventSources[0], { 'id': data.id });
                         vm.eventSources[0][index] = mapToGameEvent(data);
-                    } else{
+                    } else {
                         vm.games.push(data);
                         vm.gameEvents.push(mapToGameEvent(data));
                     }

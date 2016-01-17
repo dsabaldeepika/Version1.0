@@ -4,7 +4,7 @@
     // TODO: replace app with your module name
     angular.module('app.shell')
         .directive('skBusyIndicator', ['baseUrl', skBusyIndicator]);
-    
+
     function skBusyIndicator(baseUrl) {
         var directive = {
             controller: ['$rootScope', '$scope', controller],
@@ -19,7 +19,7 @@
         function controller($rootScope, $scope) {
             $scope.isBusy = false;
 
-            $rootScope.$on("appActivityService:isBusyChanged", function (event, args) {
+            $rootScope.$on("appActivityService:isBusyChanged", function(event, args) {
                 $scope.isBusy = args.busy;
             });
         }

@@ -1,9 +1,9 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular
-      .module('app.shell')
-      .directive('skNavLink', skNavLink);
+        .module('app.shell')
+        .directive('skNavLink', skNavLink);
 
     skNavLink.$inject = ['$filter', '$templateRequest', '$compile', '$rootScope', 'baseUrl'];
 
@@ -19,7 +19,7 @@
         return directive;
 
         function link(scope, element, attrs) {
-            $templateRequest(baseUrl + 'shell/skNavLink.html').then(function (result) {
+            $templateRequest(baseUrl + 'shell/skNavLink.html').then(function(result) {
                 scope.navLinks = scope.$parent.navLinks || scope.$parent.$parent.navLinks;
                 scope.hasChildren = $filter('filter')(scope.navLinks, {
                     parent: scope.navLink.name
@@ -35,10 +35,10 @@
                 element.replaceWith(el);
             });
 
-            $rootScope.$on('$routeChangeSuccess', function (event, next, current) {
+            $rootScope.$on('$routeChangeSuccess', function(event, next, current) {
                 if (!scope.navLink.parent && next.$$route) {
                     scope.navLink.isActive = scope.navLink.name === next.$$route.showNav
-                                            || scope.navLink.name === next.$$route.parent;
+                        || scope.navLink.name === next.$$route.parent;
                 }
             });
         }

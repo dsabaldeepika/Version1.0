@@ -6,7 +6,7 @@
         .directive('skTopNav', skTopNav);
 
     skTopNav.$inject = ['appSettingsService', 'navigationService', 'baseUrl'];
-    
+
     function skTopNav(appSettingsService, navigationService, baseUrl) {
         var directive = {
             link: link,

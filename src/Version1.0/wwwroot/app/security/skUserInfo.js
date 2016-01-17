@@ -3,10 +3,10 @@
 
     // TODO: replace app with your module name
     angular.module('app.security')
-        .directive('skUserInfo', ['$rootScope','$location','userService','appStatusService', 'guardService', 'baseUrl', skUserInfo]);
-    
+        .directive('skUserInfo', ['$rootScope', '$location', 'userService', 'appStatusService', 'guardService', 'baseUrl', skUserInfo]);
+
     function skUserInfo($rootScope, $location, userService, appStatusService, guardService, baseUrl) {
-        var directive = {            
+        var directive = {
             restrict: 'E',
             replace: true,
             templateUrl: baseUrl + 'security/skUserInfo.html',
@@ -19,22 +19,22 @@
             $scope.username = userService.info.username;
             $scope.signedIn = userService.info.signedIn;
 
-            $scope.signOut = function () {
+            $scope.signOut = function() {
                 userService.signOut();
                 $location.path('/');
             };
 
-            $scope.signIn = function () {
+            $scope.signIn = function() {
                 guardService.redirectToSignIn();
             };
 
 
-            $rootScope.$on("userService:signedInChanged", function (event, args) {
+            $rootScope.$on("userService:signedInChanged", function(event, args) {
                 $scope.signedIn = userService.info.signedIn;
                 $scope.username = userService.info.username;
-            });                
+            });
         }
-        
+
         return directive;
     }
 

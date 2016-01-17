@@ -9,7 +9,7 @@ namespace ProfilePort.DataModel
         public string Title { get; set; }
         public virtual List<Like> LikesList { get; set; }
         public virtual List<Comment> CommentsList { get; set; }
-        
+
         [ForeignKey("DashboardId")]
         public virtual Dashboard Dashboard { get; set; }
     }

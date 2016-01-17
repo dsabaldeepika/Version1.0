@@ -8,6 +8,5 @@ namespace ProfilePort.DataModel
         public DateTime CreateDateTime { get; set; }
         public DateTime CreateById { get; set; }
         public DateTime ModifiedById { get; set; }
-
     }
 }

@@ -3,14 +3,14 @@
 
     angular.module('app.core')
         .directive('skAppReady', ['appStatusService', skAppReady]);
-    
+
     function skAppReady(appStatusService) {
-        
+
         var directive = {
             link: link,
             restrict: 'A',
             scope: {
-
+            
             }
         };
         return directive;

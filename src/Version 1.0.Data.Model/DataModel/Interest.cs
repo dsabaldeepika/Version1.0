@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProfilePort.DataModel
 {
-    public class Interest :Edit
+    public class Interest : Edit
     {
         public int InterestId { get; set; }
         public string Name { get; set; }

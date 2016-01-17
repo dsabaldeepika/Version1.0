@@ -6,7 +6,7 @@ Click here to learn more. http://go.microsoft.com/fwlink/?LinkId=518007
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 
-gulp.task('minify', function () {
+gulp.task('minify', function() {
     // place code for your default task here
 
     return gulp.src("wwwroot/app/*.js")

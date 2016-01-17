@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     var serviceId = 'notifierService';
@@ -17,7 +17,7 @@
         detail: "",
         type: "info"
     };
-    
+
     angular.module('app.core')
         .factory(serviceId, [notifierService]);
 
@@ -32,12 +32,12 @@
         function show(options) {
             var opns = angular.copy(defaults);
 
-            if (typeof options === "string") {                
+            if (typeof options === "string") {
                 opns.message = options;
             } else {
                 opns = angular.extend(opns, options);
             }
-            
+
             if (service.verbose && opns.detail.length > 0) {
                 opns.message += " " + opns.detail;
             }

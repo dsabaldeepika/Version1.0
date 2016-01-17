@@ -10,6 +10,7 @@ namespace Version1._0
     public class Startup
     {
         public IConfigurationRoot Configuration { get; set; }
+
         public Startup(IHostingEnvironment env)
         {
             // Set up configuration sources.
@@ -19,7 +20,6 @@ namespace Version1._0
             Configuration = builder.Build();
         }
 
-      
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -27,14 +27,11 @@ namespace Version1._0
             // Add framework services.
             services.AddMvc()
                 .AddJsonOptions(
-                    opt =>
-                    {
-                        opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                    });
+                    opt => { opt.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver(); });
             //Mapper.Initialize(config =>
             //{
             //    config.CreateMap<Contact, ContactViewModel>().ReverseMap();
-                
+
             //});
             services.AddLogging();
             services.AddEntityFramework().AddSqlServer();

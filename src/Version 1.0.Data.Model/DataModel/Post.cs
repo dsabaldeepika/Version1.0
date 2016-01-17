@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProfilePort.DataModel
@@ -13,9 +12,8 @@ namespace ProfilePort.DataModel
         public int FromId { get; set; }
         public string Subject { get; set; }
         public string Content { get; set; }
-        // public DateTime DateCreated { get; set; }
         public DateTime? DateRead { get; set; }
-
+       public virtual  Blog blog { get; set; }
 
         [ForeignKey("DashboardId")]
         public virtual Dashboard Dashboard { get; set; }

@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular.module('app.security')
@@ -22,6 +22,6 @@
         function activate() {
             userManagementService.load();
         }
-        
+
     }
 })();

@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('EditLocationCtrl', EditLocationCtrl);
@@ -14,7 +14,7 @@
         vm.location = initialData;
         vm.refreshMap = refreshMap;
         vm.save = save;
-        vm.title = ($stateParams.id ? 'Edit Location': 'Add Location');
+        vm.title = ($stateParams.id ? 'Edit Location' : 'Add Location');
 
         vm.map = {
             center: {
@@ -34,18 +34,18 @@
         ////////////////
 
         function activate() {
-            if (vm.location.address){
+            if (vm.location.address) {
                 refreshMap();
             }
         }
 
-        function refreshMap(){
+        function refreshMap() {
             var geocoder = new maps.Geocoder();
-            geocoder.geocode({ address: vm.location.address }, function(result){
+            geocoder.geocode({ address: vm.location.address }, function(result) {
                 if (result.length > 0) {
                     var addrLocation = result[0].geometry.location;
 
-                    $timeout(function(){
+                    $timeout(function() {
                         vm.map.center = {
                             latitude: addrLocation.lat(),
                             longitude: addrLocation.lng()
@@ -67,8 +67,8 @@
         }
 
 
-        function save(){
-            eliteApi.saveLocation(vm.location).then(function(){
+        function save() {
+            eliteApi.saveLocation(vm.location).then(function() {
                 $state.go('locations');
             });
         }

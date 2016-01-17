@@ -4,9 +4,9 @@
     // TODO: replace app with your module name
     angular.module('app.security')
         .directive('skCreateLocalLogin', ['userManagementService', 'baseUrl', skCreateLocalLogin]);
-    
+
     function skCreateLocalLogin(userManagementService, baseUrl) {
-        
+
         var directive = {
             restrict: 'E',
             replace: true,
@@ -16,22 +16,22 @@
 
         return directive;
 
-        function controller($scope, userManagementService) {                                     
-            $scope.newPassword = "";            
+        function controller($scope, userManagementService) {
+            $scope.newPassword = "";
             $scope.newPasswordConfirm = "";
 
-            $scope.create = function () {
+            $scope.create = function() {
                 var data = {
                     newPassword: $scope.newPassword,
                     confirmPassword: $scope.newPasswordConfirm
                 };
 
                 userManagementService.addLocalLogin(data)
-                                        .finally(function () {
-                                                    $scope.newPassword = "";
-                                                    $scope.newPasswordConfirm = "";
-                                                });
-            };            
+                    .finally(function() {
+                        $scope.newPassword = "";
+                        $scope.newPasswordConfirm = "";
+                    });
+            };
         };
     }
 

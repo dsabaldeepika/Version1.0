@@ -12,7 +12,7 @@ namespace ProfilePort.DataModel
         public string By { get; set; }
         public int ById { get; set; }
         public string CommentContent { get; set; }
-    
+
         [ForeignKey("DashboardId")]
         public virtual Dashboard Dashboard { get; set; }
     }

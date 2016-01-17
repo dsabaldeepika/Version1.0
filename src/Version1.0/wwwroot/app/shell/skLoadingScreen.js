@@ -6,7 +6,7 @@
         .directive('skLoadingScreen', skLoadingScreen);
 
     skLoadingScreen.$inject = ['baseUrl', 'appStatusService', 'appSettingsService'];
-    
+
     function skLoadingScreen(baseUrl, appStatusService, appSettingsService) {
         var directive = {
             link: link,
@@ -19,9 +19,9 @@
             scope.title = appSettingsService.title;
             scope.hide = false;
 
-            scope.$watch(function () {
+            scope.$watch(function() {
                 return appStatusService.info.loading;
-            }, function (value) {
+            }, function(value) {
                 scope.hide = !value;
             });
 

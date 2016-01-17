@@ -1,17 +1,17 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     var serviceId = 'userService';
 
     angular.module('app.security')
-        .factory(serviceId, ['$rootScope','$q','$window', 'siteUrl', 'utilityService','storageService','appActivityService','notifierService','accountResource', userService]);
+        .factory(serviceId, ['$rootScope', '$q', '$window', 'siteUrl', 'utilityService', 'storageService', 'appActivityService', 'notifierService', 'accountResource', userService]);
 
     //TODO: these user details need to go onto an object
     function userService($rootScope, $q, $window, siteUrl, utilityService, storageService, appActivityService, notifierService, accountResource) {
-        var service = {                                   
-            signIn: signIn,            
-            signOut: signOut,            
-            setUser: setUser,            
+        var service = {
+            signIn: signIn,
+            signOut: signOut,
+            setUser: setUser,
             addLocalLogin: addLocalLogin,
             removeLogin: removeLogin,
             setPassword: setPassword,
@@ -19,7 +19,7 @@
             getManageInfo: getManageInfo,
             getUserInfo: getUserInfo,
             getExternalLogins: getExternalLogins,
-            getExternalLogin: getExternalLogin,            
+            getExternalLogin: getExternalLogin,
             addExternalLogin: addExternalLogin,
             registerExternal: registerExternal,
             signInExternal: signInExternal,
@@ -35,7 +35,7 @@
                 signedIn: false
             }
         };
-                
+
         return service;
 
         function setUser(user) {
@@ -50,7 +50,7 @@
                     service.info.roles = [];
                 }
             } else {
-                service.info.username = "";                
+                service.info.username = "";
                 service.info.signedIn = false;
                 service.info.roles = [];
             }
@@ -68,64 +68,64 @@
             var xsrf = $.param(user);
 
             return accountResource.login(xsrf)
-                                    .$promise
-                                        .then(
-                                            function (result) {                                       
-                                                setUser(result);
-                                                storageService.store("accessToken", result.access_token, user.remember);
-                                                notifierService.show({ message: "signed in as " + service.info.username, type: "info" });
-                                                return result;
-                                            },
-                                            function(result) {                                               
-                                                notifierService.show({
-                                                    message: createErrorString(result),
-                                                    type: "error"
-                                                });
+                .$promise
+                .then(
+                    function(result) {
+                        setUser(result);
+                        storageService.store("accessToken", result.access_token, user.remember);
+                        notifierService.show({ message: "signed in as " + service.info.username, type: "info" });
+                        return result;
+                    },
+                    function(result) {
+                        notifierService.show({
+                            message: createErrorString(result),
+                            type: "error"
+                        });
 
-                                                return $q.reject(result);
-                                            })
-                                            .finally(
-                                                function() {
-                                                    appActivityService.idle("userService");
-                                                });
+                        return $q.reject(result);
+                    })
+                .finally(
+                    function() {
+                        appActivityService.idle("userService");
+                    });
         }
 
         function signOut() {
             appActivityService.busy("userService");
 
             return accountResource.logout()
-                                    .$promise
-                                    .finally(
-                                        function () {
-                                            storageService.remove("accessToken");
-                                            setUser();
-                                            appActivityService.idle("userService");
-                                        });
+                .$promise
+                .finally(
+                    function() {
+                        storageService.remove("accessToken");
+                        setUser();
+                        appActivityService.idle("userService");
+                    });
         }
-     
+
         //args: {newPassword, confirmPassword}
         function setPassword(args) {
             appActivityService.busy("userService");
 
             return accountResource.setPassword(args)
-                                    .$promise
-                                    .then(
-                                        function(result) {                      
-                                            notifierService.show({ message: "your password has been set" });
-                                            return result;
-                                        },
-                                        function(result) {                        
-                                            notifierService.show({
-                                                message: createErrorString(result),
-                                                type: "error"
-                                            });
+                .$promise
+                .then(
+                    function(result) {
+                        notifierService.show({ message: "your password has been set" });
+                        return result;
+                    },
+                    function(result) {
+                        notifierService.show({
+                            message: createErrorString(result),
+                            type: "error"
+                        });
 
-                                            return $q.reject(result);
-                                        })
-                                    .finally(
-                                        function() {
-                                            appActivityService.idle("userService");
-                                        });
+                        return $q.reject(result);
+                    })
+                .finally(
+                    function() {
+                        appActivityService.idle("userService");
+                    });
         }
 
         //args: {oldPassword, newPassword, confirmPassword}
@@ -133,142 +133,142 @@
             appActivityService.busy("userService");
 
             return accountResource.changePassword(args)
-                                        .$promise
-                                        .then(
-                                            function(result) {
-                                                notifierService.show({ message: "your password has been changed" });
-                                                return result;
-                                            },
-                                            function(result) {
-                                                notifierService.show({ message: createErrorString(result), type: "error" });
-                                                return $q.reject(result);
-                                            })
-                                        .finally(
-                                            function() {
-                                                appActivityService.idle("userService");
-                                            });
+                .$promise
+                .then(
+                    function(result) {
+                        notifierService.show({ message: "your password has been changed" });
+                        return result;
+                    },
+                    function(result) {
+                        notifierService.show({ message: createErrorString(result), type: "error" });
+                        return $q.reject(result);
+                    })
+                .finally(
+                    function() {
+                        appActivityService.idle("userService");
+                    });
         }
 
         function removeLogin(data) {
             appActivityService.busy("userService");
-     
+
             return accountResource.removeLogin(data)
-                                    .$promise
-                                    .then(
-                                        null,
-                                        function(result) {
-                                            notifierService.show({
-                                                message: createErrorString(result),
-                                                type: "error"
-                                            });
-                                            return $q.reject(result);
-                                        })
-                                    .finally(
-                                        function() {
-                                            appActivityService.idle("userService");
-                                        });
+                .$promise
+                .then(
+                    null,
+                    function(result) {
+                        notifierService.show({
+                            message: createErrorString(result),
+                            type: "error"
+                        });
+                        return $q.reject(result);
+                    })
+                .finally(
+                    function() {
+                        appActivityService.idle("userService");
+                    });
         }
 
         function getManageInfo(returnUrl, generateState) {
             appActivityService.busy("userService");
-                        
-            return accountResource.getManageInfo({returnUrl: returnUrl, generateState: generateState})
-                                        .$promise
-                                        .then(
-                                            null,
-                                            function (result) {
-                                                notifierService.show({
-                                                    message: createErrorString(result),
-                                                    type: "error"
-                                                });
-                                                return $q.reject(result);
-                                            }
-                                        )
-                                        .finally(
-                                            function () {
-                                                appActivityService.idle("userService");
-                                            });
+
+            return accountResource.getManageInfo({ returnUrl: returnUrl, generateState: generateState })
+                .$promise
+                .then(
+                    null,
+                    function(result) {
+                        notifierService.show({
+                            message: createErrorString(result),
+                            type: "error"
+                        });
+                        return $q.reject(result);
+                    }
+                )
+                .finally(
+                    function() {
+                        appActivityService.idle("userService");
+                    });
         }
 
         function getUserInfo() {
             appActivityService.busy("userService");
-            
+
             return accountResource.getUserInfo()
-                                    .$promise
-                                    .then(
-                                        null,
-                                        function (result) {
-                                            notifierService.show({
-                                                message: createErrorString(result),
-                                                type: "error"
-                                            });
-                                            return $q.reject(result);
-                                        }
-                                    )
-                                    .finally(
-                                        function () {
-                                            appActivityService.idle("userService");
-                                        });
+                .$promise
+                .then(
+                    null,
+                    function(result) {
+                        notifierService.show({
+                            message: createErrorString(result),
+                            type: "error"
+                        });
+                        return $q.reject(result);
+                    }
+                )
+                .finally(
+                    function() {
+                        appActivityService.idle("userService");
+                    });
         }
 
-        function addLocalLogin(data) {            
+        function addLocalLogin(data) {
             return setPassword(data);
         }
-        
+
         function registerExternal(registration) {
             appActivityService.busy("userService");
 
             return accountResource.registerExternal(registration)
-                                        .$promise
-                                        .then(function(result) {
-                                            notifierService.show({ message: "registered successfully as " + result.username, type: "info" });
-                                            return result;
-                                        },
-                                        function(result) {                                               
-                                            notifierService.show({
-                                                message: createErrorString(result),
-                                                type: "error"
-                                            });
+                .$promise
+                .then(function(result) {
+                        notifierService.show({ message: "registered successfully as " + result.username, type: "info" });
+                        return result;
+                    },
+                    function(result) {
+                        notifierService.show({
+                            message: createErrorString(result),
+                            type: "error"
+                        });
 
-                                            return $q.reject(result);
-                                        })
-                                        .finally(function() {
-                                            appActivityService.idle("userService");
-                                        });
+                        return $q.reject(result);
+                    })
+                .finally(function() {
+                    appActivityService.idle("userService");
+                });
         }
 
-        function register(registration,remember) {
+        function register(registration, remember) {
             appActivityService.busy("userService");
 
             return accountResource.register(registration)
-                                    .$promise
-                                    .then(
-                                        function(result) {
-                                            setUser(result);
-                                            storageService.store("accessToken", result.access_token, remember);
+                .$promise
+                .then(
+                    function(result) {
+                        setUser(result);
+                        storageService.store("accessToken", result.access_token, remember);
 
-                                            return result;
-                                        },
-                                            function(result) {
-                                                notifierService.show({
-                                                    message: createErrorString(result),
-                                                    type: "error"
-                                                });
+                        return result;
+                    },
+                    function(result) {
+                        notifierService.show({
+                            message: createErrorString(result),
+                            type: "error"
+                        });
 
-                                                return $q.reject(result);
-                                            })
-                                        .finally(
-                                            function() {
-                                                appActivityService.idle("userService");
-                                        });
+                        return $q.reject(result);
+                    })
+                .finally(
+                    function() {
+                        appActivityService.idle("userService");
+                    });
         }
 
         function signInExternal(provider) {
             appActivityService.busy("userService");
 
             return service.getExternalLogin({
-                provider: provider,
-                returnUrl: siteUrl + "externalauth/signin"
+                    provider: provider,
+                    returnUrl: siteUrl + "externalauth/signin"
                 })
                 .finally(
                     function() {
@@ -280,15 +280,15 @@
             appActivityService.busy("userService");
 
             return accountResource.addExternalLogin(externalLogin)
-                                    .$promise
-                                    .then(
-                                        function(result) {
-                                            $window.location.href = result.url;
-                                        })
-                                      .finally(
-                                        function() {
-                                            appActivityService.idle("userService");
-                                        });
+                .$promise
+                .then(
+                    function(result) {
+                        $window.location.href = result.url;
+                    })
+                .finally(
+                    function() {
+                        appActivityService.idle("userService");
+                    });
         }
 
         function getExternalLogin(options) {
@@ -297,29 +297,29 @@
             var args = {
                 returnUrl: options.returnUrl ? options.returnUrl : "",
                 generateState: (options.generateState ? "true" : "false"),
-                provider:options.provider
+                provider: options.provider
             };
-            
-            return accountResource.getExternalLogin(args)
-                                            .$promise
-                                            .then(null,
-                                                function(result) {
-                                                    notifierService.show({
-                                                        message: "error retrieving external logins. " + createErrorString(result),
-                                                        type: "error"
-                                                    });
 
-                                                    return $q.reject(result);
-                                                })
-                                                .finally(
-                                                    function () {
-                                                        appActivityService.idle("userService");
-                                                    });
+            return accountResource.getExternalLogin(args)
+                .$promise
+                .then(null,
+                    function(result) {
+                        notifierService.show({
+                            message: "error retrieving external logins. " + createErrorString(result),
+                            type: "error"
+                        });
+
+                        return $q.reject(result);
+                    })
+                .finally(
+                    function() {
+                        appActivityService.idle("userService");
+                    });
         }
 
         function getExternalLogins(options) {
             appActivityService.busy("userService");
-                        
+
             var args = {
                 returnUrl: options.returnUrl ? options.returnUrl : "",
                 generateState: (options.generateState ? "true" : "false")
@@ -330,63 +330,63 @@
             }
 
             return accountResource.getExternalLogins(args)
-                                            .$promise
-                                            .then(null,
-                                                function(result) {
-                                                    notifierService.show({
-                                                        message: "error retrieving external logins. " + createErrorString(result),
-                                                        type: "error"
-                                                    });
+                .$promise
+                .then(null,
+                    function(result) {
+                        notifierService.show({
+                            message: "error retrieving external logins. " + createErrorString(result),
+                            type: "error"
+                        });
 
-                                                    return $q.reject(result);
-                                                })
-                                                .finally(
-                                                    function() {
-                                                        appActivityService.idle("userService");
-                                                    });
+                        return $q.reject(result);
+                    })
+                .finally(
+                    function() {
+                        appActivityService.idle("userService");
+                    });
         }
 
-        function checkEmailAvailable(email) {            
+        function checkEmailAvailable(email) {
             if (email) {
-                return $q(function (resolve, reject) {
+                return $q(function(resolve, reject) {
                     accountResource.checkEmailAvailable({ email: email })
-                                            .$promise
-                                            .then(function (result) {
-                                                if (result.available) {
-                                                    resolve(result);
-                                                } else {
-                                                    reject(result);
-                                                }
-                                            },
-                                            function (result) {
-                                                resolve("unexpected error");
-                                            });
-                });                
+                        .$promise
+                        .then(function(result) {
+                                if (result.available) {
+                                    resolve(result);
+                                } else {
+                                    reject(result);
+                                }
+                            },
+                            function(result) {
+                                resolve("unexpected error");
+                            });
+                });
             } else {
-                return $q(function (resolve, reject) {             
+                return $q(function(resolve, reject) {
                     resolve();
                 });
             }
         }
 
-        function checkUsernameAvailable(username) {            
+        function checkUsernameAvailable(username) {
             if (username) {
-                return $q(function (resolve, reject) {
+                return $q(function(resolve, reject) {
                     accountResource.checkUsernameAvailable({ username: username })
-                                            .$promise
-                                            .then(function (result) {
-                                                if (result.available) {
-                                                    resolve(result);
-                                                } else {
-                                                    reject(result);
-                                                }
-                                            },
-                                            function (result) {
-                                                resolve("unexpected error");
-                                            });
-                });                
+                        .$promise
+                        .then(function(result) {
+                                if (result.available) {
+                                    resolve(result);
+                                } else {
+                                    reject(result);
+                                }
+                            },
+                            function(result) {
+                                resolve("unexpected error");
+                            });
+                });
             } else {
-                return $q(function (resolve, reject) {
+                return $q(function(resolve, reject) {
                     resolve();
                 });
             }
@@ -421,7 +421,7 @@
                 return errors;
             }
         }
-     
+
         function encodeUrlWithReturnUrl(url, returnUrl, generateState) {
             return url + (encodeURIComponent(returnUrl)) +
                 "&generateState=" + (generateState ? "true" : "false");

@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular.module('app.content')
@@ -12,7 +12,7 @@
 
         vm.title = 'features';
         vm.features = [];
-        
+
         activate();
 
         function activate() {
@@ -21,20 +21,20 @@
             notifierFeature = {
                 name: "notifier service (notifierService)",
                 description: "Wraps toastr to make creating user info popups from anywhere in your app easy. Click the demo button to send a message.",
-                demo: function () {
-                    notifierService.show({message: "A message from the notifierService"});
+                demo: function() {
+                    notifierService.show({ message: "A message from the notifierService" });
                 }
             };
 
-            vm.features.push(notifierFeature);            
+            vm.features.push(notifierFeature);
 
             appActivityFeature = {
                 name: "application activity service (appActivityService)",
                 description: "Allows the app to track whether it is busy or not. Use the busy/idle methods let the app know. Also use the sk-disable-when-busy directive to disable elements whilst the app is busy.",
-                demo: function () {
+                demo: function() {
                     if (busy) {
                         appActivityService.idle("demo");
-                        busy = false;                        
+                        busy = false;
                     } else {
                         appActivityService.busy("demo");
                         busy = true;

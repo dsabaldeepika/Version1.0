@@ -1,10 +1,10 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     var serviceId = 'navigationService';
-    
+
     angular.module('app.core')
-        .factory(serviceId, ['$route',navigationService]);
+        .factory(serviceId, ['$route', navigationService]);
 
     function navigationService($route) {
         var links = [];
@@ -16,7 +16,7 @@
         createLinks();
 
         function createLinks() {
-            angular.forEach($route.routes, function (route) {
+            angular.forEach($route.routes, function(route) {
                 if (route.showNav) {
                     links.push({
                         name: route.showNav,

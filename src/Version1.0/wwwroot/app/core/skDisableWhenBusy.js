@@ -3,7 +3,7 @@
 
     angular.module('app.core')
         .directive('skDisableWhenBusy', ['$rootScope', skDisableWhenBusy]);
-    
+
     function skDisableWhenBusy($rootScope) {
         var directive = {
             link: link,
@@ -17,15 +17,15 @@
 
         function link(scope, element, attrs) {
             var target = element,
-              disable = setDisable(scope.disableOn),
-              busy = false;
+                disable = setDisable(scope.disableOn),
+                busy = false;
 
-            scope.$watch("disableOn", function (value) {
+            scope.$watch("disableOn", function(value) {
                 setDisable(value);
                 updateDisabled();
             });
 
-            $rootScope.$on("appActivityService:isBusyChanged", function (event, args) {
+            $rootScope.$on("appActivityService:isBusyChanged", function(event, args) {
                 busy = args.busy;
                 updateDisabled();
             });
@@ -38,7 +38,7 @@
                 var result = false;
 
                 if (boolArray) {
-                    boolArray.forEach(function (b) {
+                    boolArray.forEach(function(b) {
                         if (b) {
                             result = true;
                         }

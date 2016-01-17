@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('TeamsCtrl', TeamsCtrl);
@@ -27,15 +27,15 @@
 
         function deleteItem(id) {
             dialogs.confirm('Are you sure you want to Delete this item?', 'Delete?', ['OK', 'Cancel'])
-                .then(function(){
-                    eliteApi.deleteTeam(id).then(function(data){
+                .then(function() {
+                    eliteApi.deleteTeam(id).then(function(data) {
                         _.remove(vm.teams, { 'id': id });
                         initializeGroups();
                     });
                 });
         }
 
-        function editItem(team){
+        function editItem(team) {
             var modalInstance = $modal.open({
                 templateUrl: '/app/teams/edit-team.html',
                 controller: 'EditTeamCtrl',
@@ -50,12 +50,12 @@
                 }
             });
 
-            modalInstance.result.then(function(result){
+            modalInstance.result.then(function(result) {
                 result.leagueId = $stateParams.id;
-                eliteApi.saveTeam(result).then(function(data){
-                    if (team){
+                eliteApi.saveTeam(result).then(function(data) {
+                    if (team) {
                         _.assign(team, data);
-                    } else{
+                    } else {
                         vm.teams.push(data);
                     }
                     initializeGroups();
@@ -64,21 +64,20 @@
         }
 
 
-
         function initializeGroups() {
             vm.groups = _.chain(vm.teams)
                 .sortBy('name')
                 .groupBy('divisionName')
                 .pairs()
-                .map(function(item){
+                .map(function(item) {
                     return { divisionName: item[0], teams: item[1], isOpen: true };
                 })
                 .sortBy('divisionName')
                 .value();
         }
 
-        function toggleExpand(expand){
-            _.forEach(vm.groups, function(group){
+        function toggleExpand(expand) {
+            _.forEach(vm.groups, function(group) {
                 group.isOpen = expand;
             });
         }

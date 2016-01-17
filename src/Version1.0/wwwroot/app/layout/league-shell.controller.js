@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('LeagueShellCtrl', LeagueShellCtrl);
@@ -19,7 +19,7 @@
         activate();
 
         function activate() {
-            _.each(vm.tabs, function (tab) {
+            _.each(vm.tabs, function(tab) {
                 tab.active = ($state.current.name === tab.state);
             });
         }

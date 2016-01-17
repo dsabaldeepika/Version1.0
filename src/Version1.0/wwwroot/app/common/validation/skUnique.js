@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular
@@ -20,13 +20,13 @@
         return directive;
 
         function link(scope, element, attrs, ngModel) {
-            var wrappedValidator = function (mv, vv) {
+            var wrappedValidator = function(mv, vv) {
                 ngModel.$setValidity('checking', false);
 
                 return scope.skUnique({ value: mv || vv })
-                                    .finally(function () {
-                                        ngModel.$setValidity('checking', true);
-                                    });
+                    .finally(function() {
+                        ngModel.$setValidity('checking', true);
+                    });
             };
 
             ngModel.$asyncValidators.unique = wrappedValidator;

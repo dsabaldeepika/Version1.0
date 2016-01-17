@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').directive('spinner', spinner);
@@ -14,7 +14,7 @@
 
         function link(scope, element, attrs) {
             scope.spinner = null;
-            scope.$watch(attrs.spinner, function (options) {
+            scope.$watch(attrs.spinner, function(options) {
                 if (scope.spinner) {
                     scope.spinner.stop();
                 }

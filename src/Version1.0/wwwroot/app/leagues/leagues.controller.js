@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('LeaguesCtrl', LeaguesCtrl);
@@ -29,41 +29,41 @@
         function activate() {
         }
 
-        function addItem(){
+        function addItem() {
             var newLeague = {
                 name: vm.newLeagueName
             };
 
-            eliteApi.addLeague(newLeague).then(function(data){
+            eliteApi.addLeague(newLeague).then(function(data) {
                 vm.newLeagueName = '';
                 vm.leagues.push(data);
             });
         }
 
-        function cancelEdit(id){
+        function cancelEdit(id) {
             vm.currentEdit[id] = false;
         }
 
-        function deleteItem(id){
+        function deleteItem(id) {
             dialogs.confirm('Are you sure you want to Delete this item?', 'Delete?', ['OK', 'Cancel'])
-                .then(function(){
-                    eliteApi.deleteLeague(id).then(function(data){
+                .then(function() {
+                    eliteApi.deleteLeague(id).then(function(data) {
                         _.remove(vm.leagues, { 'id': id });
                     });
                 });
         }
 
-        function editItem(item){
+        function editItem(item) {
             vm.currentEdit[item.id] = true;
             vm.itemToEdit = angular.copy(item);
         }
 
-        function hideAlert(){
+        function hideAlert() {
             vm.showHelpAlert = false;
         }
 
-        function saveItem(item){
-            eliteApi.saveLeague(vm.itemToEdit).then(function(data){
+        function saveItem(item) {
+            eliteApi.saveLeague(vm.itemToEdit).then(function(data) {
                 vm.currentEdit[item.id] = false;
                 item.name = vm.itemToEdit.name;
             });

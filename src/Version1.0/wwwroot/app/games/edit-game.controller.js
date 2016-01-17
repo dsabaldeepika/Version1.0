@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('eliteAdmin').controller('EditGameCtrl', EditGameCtrl);
@@ -35,7 +35,7 @@
             }
         }
 
-        function cancel(){
+        function cancel() {
             $modalInstance.dismiss();
         }
 
@@ -50,7 +50,7 @@
             vm.opened = true;
         }
 
-        function save(){
+        function save() {
             vm.editableItem.time = combine(vm.gameDate, vm.gameTime);
             $modalInstance.close(vm.editableItem);
         }

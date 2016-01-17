@@ -1,4 +1,4 @@
-﻿(function () {
+﻿(function() {
     'use strict';
 
     angular.module('app.common')
@@ -15,11 +15,11 @@
 
         function link(scope, element, attrs, ctrl) {
             scope.$watchGroup([
-              attrs.ngModel,
-              attrs.skMatch
-            ], function (newValues) {
+                attrs.ngModel,
+                attrs.skMatch
+            ], function(newValues) {
                 ctrl.$setValidity('match', newValues[0] === newValues[1]);
             });
         }
-    }    
+    }
 })();
